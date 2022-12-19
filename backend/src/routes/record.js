@@ -26,7 +26,6 @@ recordRoutes.route("/myPokedex").get(function (req, res) {
 // This section will help you create a new record.
 recordRoutes.route("/allPokemon").post(function (req, response) {
   let db_connect = dbo.getDb();
-
   let name = req.body.pokeName;
   let types = req.body.pokeTypes;
   let url = req.body.pokeImg;
@@ -49,7 +48,7 @@ recordRoutes.route("/myPokedex/:id").delete((req, response) => {
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("MyPokedex").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
-    console.log("1 pokemon deleted");
+    console.log("Vous avez supprimé un pokemon de votre Pokedex !");
     response.json(obj);
   });
 });

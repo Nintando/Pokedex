@@ -68,8 +68,16 @@ export default function App() {
         return <Card key={i} pokemon={pokemon} />;
       })}
       <br />
-      {url.previous && <button onClick={previous}>Previous</button>}
-      {url.next && <button onClick={next}>Next</button>}
+      {url.previous && (
+        <button className="btn-previous" onClick={previous}>
+          Previous
+        </button>
+      )}
+      {url.next && (
+        <button className="btn-next" onClick={next}>
+          Next
+        </button>
+      )}
       <br />
     </div>
   );

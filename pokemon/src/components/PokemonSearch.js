@@ -1,5 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 
+// eslint-disable-next-line
 export default {
   detail,
 };

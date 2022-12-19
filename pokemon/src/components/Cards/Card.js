@@ -15,6 +15,7 @@ export default function Card({ pokemon }) {
   }, []);
 
   const tab = [];
+  // eslint-disable-next-line
   data.map((data) => {
     tab.push(data.pokeName);
   });
@@ -40,21 +41,22 @@ export default function Card({ pokemon }) {
 
   return (
     <div className="Card" key={pokemon._id}>
-      <div className="Card_img">
-        <img src={pokemon.sprites.front_default} alt="" /> <br />
+      <div className="Card_Container">
+        <div className="Card_name">{pokemon.name}</div>
+        <div className="Card_img">
+          <img src={pokemon.sprites.front_default} alt="" /> <br />
+        </div>
+        <div className="Type">
+          {pokemon.types.map((type, i) => {
+            return <div key={i}>{type.type.name}</div>;
+          })}
+        </div>
       </div>
-
-      <div className="Card_name">{pokemon.name}</div>
-      <div className="Card_types">
-        {pokemon.types.map((type, i) => {
-          return (
-            <div className="Card_type" key={i}>
-              {type.type.name}
-            </div>
-          );
-        })}
+      <div className="btn">
+        <button className="btn-add" onClick={putPokeToDB}>
+          Ajouter au pokédex
+        </button>
       </div>
-      <button onClick={putPokeToDB}>Ajouter au pokédex</button>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import PokemonSearch from "../components/PokemonSearch";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { CgPokemon } from "react-icons/cg";
 import { useState, useEffect } from "react";
 
 export default function PageAccueil() {
@@ -84,22 +85,37 @@ export default function PageAccueil() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <Header />
       {data.map((data, i) => {
         return <CardPokedex key={i} data={data} />;
       })}
-      <div>
-        <h1>Let's look up a pokemon</h1>
-        <input value={search} onChange={(evt) => setSearch(evt.target.value)} />
-        <button onClick={handleClick}>Search</button>
-
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div className="Pokedex">
+        <h3 className="Ecriture">Rercherche d'un Pokemon</h3>
+        <input
+          className="SearchBar"
+          value={search}
+          onChange={(evt) => setSearch(evt.target.value)}
+        />
+        <button onClick={handleClick}>
+          <CgPokemon />
+        </button>
         {details &&
           (details.error ? (
             <h1>{details.error}</h1>
           ) : (
             <div>
-              <h1>{details.name}</h1>
+              <h1 className="Ecriture">{details.name}</h1>
               <img src={details.sprites.front_default} alt="" />
               {details.types.map((type, i) => {
                 return (
@@ -113,8 +129,12 @@ export default function PageAccueil() {
               </Button>
             </div>
           ))}
+        <br />
+        <br /> <br /> <br />
+        <button className="btn-del" onClick={delPokedex}>
+          Supprimer Pokedex
+        </button>
       </div>
-      <button onClick={delPokedex}>Supprimer le pokédex</button>
     </div>
   );
 }

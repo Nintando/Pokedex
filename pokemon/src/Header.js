@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-
 export default function Header() {
   return (
     <div>
-      <Link to="/">Acceuil</Link>
-      <br />
-      <Link to="/allPokemon">All Pokemon</Link>
-      <br />
-      <Link to="/myPokedex">My Pokedex</Link>
+      <Link className="nav-link " to="/">
+        Accueil
+      </Link>
+      <Link className="nav-link " to="/allPokemon">
+        Pokemon
+      </Link>
+      <Link className="nav-link " to="/myPokedex">
+        Pokedex
+      </Link>
     </div>
   );
 }
