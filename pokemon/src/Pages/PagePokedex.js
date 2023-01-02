@@ -4,6 +4,7 @@ import getPokedex from "../components/Pokedex";
 import PokemonSearch from "../components/PokemonSearch";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/pokeTypes.css";
 
 import { CgPokemon } from "react-icons/cg";
 import { useState, useEffect } from "react";
@@ -119,9 +120,9 @@ export default function PageAccueil() {
               <img src={details.sprites.front_default} alt="" />
               {details.types.map((type, i) => {
                 return (
-                  <div className="Card_type" key={i}>
+                  <span className={`type ${type.type.name}`} key={i}>
                     {type.type.name}
-                  </div>
+                  </span>
                 );
               })}
               <Button variant="success" onClick={putPokeToDB}>

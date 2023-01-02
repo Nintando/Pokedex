@@ -1,3 +1,5 @@
+import "../../styles/pokeTypes.css";
+
 export default function Pokedex({ data }) {
   const delOnePokemon = (i) => {
     fetch(`http://localhost:5000/myPokedex/${i}`, {
@@ -20,15 +22,13 @@ export default function Pokedex({ data }) {
             <img src={data.pokeImg} alt="" /> <br />
           </div>
           <div className="Card_name">{data.pokeName}</div>
-          <div className="Card_types">
-            {data.pokeTypes.map((type, i) => {
-              return (
-                <div className="Card_type" key={i}>
-                  {type.type.name}
-                </div>
-              );
-            })}
-          </div>
+          {data.pokeTypes.map((type, i) => {
+            return (
+              <span className={`type ${type.type.name}`} key={i}>
+                {type.type.name}
+              </span>
+            );
+          })}
           <button className="btn-free" onClick={() => delOnePokemon(data._id)}>
             Libérer
           </button>

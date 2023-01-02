@@ -1,4 +1,5 @@
 import getPokedex from "../Pokedex";
+import "../../styles/pokeTypes.css";
 
 import { useState, useEffect } from "react";
 
@@ -46,11 +47,13 @@ export default function Card({ pokemon }) {
         <div className="Card_img">
           <img src={pokemon.sprites.front_default} alt="" /> <br />
         </div>
-        <div className="Type">
-          {pokemon.types.map((type, i) => {
-            return <div key={i}>{type.type.name}</div>;
-          })}
-        </div>
+        {pokemon.types.map((type, i) => {
+          return (
+            <span className={`type ${type.type.name}`} key={i}>
+              {type.type.name}
+            </span>
+          );
+        })}
       </div>
       <div className="btn">
         <button className="btn-add" onClick={putPokeToDB}>
