@@ -1,18 +1,13 @@
 const express = require("express");
 
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /record.
-const recordRoutes = express.Router();
+const pokemonRoutes = express.Router();
 
-// This will help us connect to the database
 const dbo = require("../Conn");
 
-// This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
 //This section will help you get a list of all the records.
-recordRoutes.route("/myPokedex").get(function (req, res) {
+pokemonRoutes.route("/myPokedex").get(function (req, res) {
   let db_connect = dbo.getDb("Pokemon");
   db_connect
     .collection("MyPokedex")
@@ -24,7 +19,7 @@ recordRoutes.route("/myPokedex").get(function (req, res) {
 });
 
 // This section will help you create a new record.
-recordRoutes.route("/allPokemon").post(function (req, response) {
+pokemonRoutes.route("/allPokemon").post(function (req, response) {
   let db_connect = dbo.getDb();
   let name = req.body.pokeName;
   let types = req.body.pokeTypes;
@@ -43,7 +38,7 @@ recordRoutes.route("/allPokemon").post(function (req, response) {
 });
 
 // This section will help you delete a record
-recordRoutes.route("/myPokedex/:id").delete((req, response) => {
+pokemonRoutes.route("/myPokedex/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("MyPokedex").deleteOne(myquery, function (err, obj) {
@@ -54,9 +49,9 @@ recordRoutes.route("/myPokedex/:id").delete((req, response) => {
 });
 
 // This section will help you delete a record
-recordRoutes.route("/myPokedex").delete((req) => {
+pokemonRoutes.route("/myPokedex").delete((req) => {
   let db_connect = dbo.getDb();
   db_connect.collection("MyPokedex").deleteMany();
 });
 
-module.exports = recordRoutes;
+module.exports = pokemonRoutes;
