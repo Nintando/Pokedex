@@ -1,6 +1,6 @@
 # Pokedex
 
-Voici mon git sur le projet Pokemon API en ReactJS et Mongodb
+Voici notre git sur le projet Pokemon API en ReactJS et Mongodb
 
 ## Veuillez suivre les étapes suivantes :
 
