@@ -60,7 +60,7 @@ export default function PageAccueil() {
     if (tab.includes(search)) {
       return alert("existe deja");
     } else {
-      fetch("http://localhost:5000/allPokemon", {
+      fetch("http://localhost:5000/add", {
         method: "POST",
         body: JSON.stringify({
           pokeName: poke.name,
@@ -72,17 +72,6 @@ export default function PageAccueil() {
         .then(alert("Vous avez ajouté le pokemon dans votre Pokédex"))
         .then(window.location.reload(true));
     }
-  };
-
-  const delPokedex = async () => {
-    fetch("http://localhost:5000/myPokedex", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(alert("Vous avez supprimer votre Pokédex"))
-      .then(window.location.reload(true));
   };
 
   return (
@@ -130,11 +119,6 @@ export default function PageAccueil() {
               </Button>
             </div>
           ))}
-        <br />
-        <br /> <br /> <br />
-        <button className="btn-del" onClick={delPokedex}>
-          Supprimer Pokedex
-        </button>
       </div>
     </div>
   );

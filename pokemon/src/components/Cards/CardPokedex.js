@@ -1,19 +1,6 @@
 import "../../styles/pokeTypes.css";
 
 export default function Pokedex({ data }) {
-  const delOnePokemon = (i) => {
-    fetch(`http://localhost:5000/myPokedex/${i}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(alert("Vous avez libérer un pokémon"))
-      .then(window.location.reload(true));
-  };
-
-  console.log(`http://localhost:5000/myPokedex/${data._id}`);
-
   return (
     <div className="Card_Container">
       <div>
@@ -29,9 +16,6 @@ export default function Pokedex({ data }) {
               </span>
             );
           })}
-          <button className="btn-free" onClick={() => delOnePokemon(data._id)}>
-            Libérer
-          </button>
         </div>
       </div>
     </div>

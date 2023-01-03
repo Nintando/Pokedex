@@ -25,7 +25,7 @@ export default function Card({ pokemon }) {
     if (tab.includes(name)) {
       return alert("existe deja");
     } else {
-      fetch("http://localhost:5000/allPokemon", {
+      fetch("http://localhost:5000/add", {
         method: "POST",
         body: JSON.stringify({
           pokeName: name,

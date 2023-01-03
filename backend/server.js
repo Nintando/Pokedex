@@ -3,16 +3,22 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
+
+// get driver connection
+require("./src/Conn.js");
+
+const userRegister = require("./src/routes/register.route");
+const userLogin = require("./src/routes/login.route");
+const { verifyUser } = require("./src/middlewares/verifyUser.middleware.js");
+
 app.use(cors());
 app.use(express.json());
-app.use(require("./src/routes/record"));
-// get driver connection
-const dbo = require("./src/Conn.js");
 
-app.listen(port, () => {
-  // perform a database connection when server starts
-  dbo.connectToServer(function (err) {
-    if (err) console.error(err);
-  });
+// routes
+app.use("/user/register", userRegister);
+app.use("/user/login", verifyUser, userLogin);
+app.use(require("./src/routes/pokemon.route"));
+
+app.listen(port, async () => {
   console.log(`Server is running on port: ${port}`);
 });
