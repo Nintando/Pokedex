@@ -1,10 +1,11 @@
-const Poke = require("../models/Pokemon.model");
+const User = require("../models/User.model");
 
 const showPokedex = async (req, res) => {
   try {
-    const pokedex = await Poke.find(
-      {},
-      { _id: 0, pokeName: 1, pokeTypes: 1, pokeImg: 1 }
+    const username = req.user.username
+    const pokedex = await User.findOne(
+      {username},
+      { _id: 0, username: 1, pokedex: 1, coins: 1 }
     );
 
     res.json(pokedex);

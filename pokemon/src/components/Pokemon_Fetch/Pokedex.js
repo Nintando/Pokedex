@@ -1,11 +1,17 @@
 export default async function getPokedex() {
-  fetch("http://localhost:5000/pokedex", {
+  const token = localStorage.getItem("Token");
+
+  return (fetch("http://localhost:5000/pokedex", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
-  });
-  const response = await fetch("http://localhost:5000/pokedex");
-  const data = await response.json();
-  return data;
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(err => console.log(err))
+  )
 }

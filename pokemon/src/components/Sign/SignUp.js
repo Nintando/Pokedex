@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -9,29 +7,36 @@ function Signup() {
   const handleSubmit = async () => {
     console.log(username, password);
 
-    fetch("http://localhost:5000/user/register", {
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.status === 400) {
-          alert("Username already taken");
-          setUsername("");
-          setPassword("");
-        }
-        if (res.status === 200) {
-          alert("Registered with Success, You need to logging now !");
-          setUsername("");
-          setPassword("");
-        }
+    if (username === "" || password === "") {
+      alert("Need Username/Password");
+      setUsername("");
+      setPassword("");
+      return;
+    } else {
+      fetch("http://localhost:5000/user/register", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((err) => console.log(err));
+        .then((res) => {
+          if (res.status === 400) {
+            alert("Username already taken");
+            setUsername("");
+            setPassword("");
+          }
+          if (res.status === 200) {
+            alert("Registered with Success, You need to logging now !");
+            setUsername("");
+            setPassword("");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
