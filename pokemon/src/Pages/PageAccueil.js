@@ -1,5 +1,5 @@
+import Header from "../Header";
 import image from "../img/pk.jpg";
-import { Link } from "react-router-dom";
 
 export default function PageAccueil() {
   return (
@@ -9,15 +9,7 @@ export default function PageAccueil() {
     >
       <br /> <br />
       <div>
-        <Link className="nav-link " to="/">
-          Accueil
-        </Link>
-        <Link className="nav-link " to="/allPokemon">
-          Pokemon
-        </Link>
-        <Link className="nav-link " to="/myPokedex">
-          Pokedex
-        </Link>
+        <Header></Header>
       </div>
     </div>
   );
