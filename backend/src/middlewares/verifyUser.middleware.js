@@ -7,9 +7,7 @@ const verifyUser = async (req, res, next) => {
     let exist = await User.findOne({ username });
 
     if (!exist)
-      return res
-        .status(400)
-        .send({ error: "Username or Password are incorrect" });
+      return res.status(500).send({ error: "Username doens't exist" });
     next();
   } catch (error) {
     console.log(error);

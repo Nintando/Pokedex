@@ -1,8 +1,10 @@
 import Header from "../Header";
 import CardPokedex from "../components/Cards/CardPokedex";
-import getPokedex from "../components/Pokedex";
-import PokemonSearch from "../components/PokemonSearch";
-import { Button, Badge } from "react-bootstrap";
+import getPokedex from "../components/Pokemon_Fetch/Pokedex";
+import PokemonSearch from "../components/Pokemon_Fetch/PokemonSearch";
+import Signup from "../components/Sign/SignUp";
+import Signin from "../components/Sign/SignIn";
+import { Button } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
@@ -96,75 +98,98 @@ export default function PageAccueil() {
     }
   };
 
-  return (
-    <div className="app-container">
-      <Header />
-      {data.map((data, i) => {
-        return <CardPokedex key={i} data={data} />;
-      })}
-      <input
-        className="SearchBar"
-        value={search}
-        onChange={(evt) => setSearch(evt.target.value)}
-        placeholder="Rercherche un pokemon"
-      />
-      <button onClick={handleClick}>
-        <CgPokemon />
-      </button>
-      <div className="Pokedex">
-        <div>
-          <button id="gen-button" onClick={RandomPokemon}>
-            Générer un pokémon aléatoire ({COST} pièces)
-          </button>
-          <br />
+  const token = localStorage.getItem("Token");
 
-          <p>Pièces: {coins}</p>
-          <div className="d-flex justify-content-center">
-            {pokemonList.map((pokemon, i) => {
-              return (
-                <Card key={i} style={{ width: "16rem" }}>
-                  <div className="rm">#{pokemon.id}</div>
-                  <Card.Title className="rm">{pokemon.name}</Card.Title>
-                  <Card.Img variant="top" src={pokemon.sprites.front_default} />
-                  <Card.Body>
-                    <Card.Text className="rm">
-                      {" "}
-                      {pokemon.types.map((type) => {
-                        return (
-                          <span className={`type ${type.type.name}`}>
-                            {type.type.name}
-                          </span>
-                        );
-                      })}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </div>
-        </div>{" "}
-      </div>
-      {details &&
-        (details.error ? (
-          <h1>{details.error}</h1>
-        ) : (
+  if (token !== null) {
+    return (
+      <div className="app-container">
+        <Header />
+        {data.map((data, i) => {
+          return <CardPokedex key={i} data={data} />;
+        })}
+        <input
+          className="SearchBar"
+          value={search}
+          onChange={(evt) => setSearch(evt.target.value)}
+          placeholder="Rercherche un pokemon"
+        />
+        <button onClick={handleClick}>
+          <CgPokemon />
+        </button>
+        <div className="Pokedex">
           <div>
-            <h1 className="Ecriture">{details.name}</h1>
-            <img src={details.sprites.front_default} alt="" />
-            {details.types.map((type, i) => {
-              return (
-                <div className={`type ${type.type.name} `} key={i}>
-                  {type.type.name}
-                </div>
-              );
-            })}
+            <button id="gen-button" onClick={RandomPokemon}>
+              Générer un pokémon aléatoire ({COST} pièces)
+            </button>
+            <br />
 
-            <Button variant="success" onClick={putPokeToDB}>
-              Ajouter le pokemon
-            </Button>
-          </div>
-        ))}
-      <br />
-    </div>
-  );
+            <p>Pièces: {coins}</p>
+            <div className="d-flex justify-content-center">
+              {pokemonList.map((pokemon, i) => {
+                return (
+                  <Card key={i} style={{ width: "16rem" }}>
+                    <div className="rm">#{pokemon.id}</div>
+                    <Card.Title className="rm">{pokemon.name}</Card.Title>
+                    <Card.Img
+                      variant="top"
+                      src={pokemon.sprites.front_default}
+                    />
+                    <Card.Body>
+                      <Card.Text className="rm">
+                        {" "}
+                        {pokemon.types.map((type) => {
+                          return (
+                            <span className={`type ${type.type.name}`}>
+                              {type.type.name}
+                            </span>
+                          );
+                        })}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>{" "}
+        </div>
+        {details &&
+          (details.error ? (
+            <h1>{details.error}</h1>
+          ) : (
+            <div>
+              <h1 className="Ecriture">{details.name}</h1>
+              <img src={details.sprites.front_default} alt="" />
+              {details.types.map((type, i) => {
+                return (
+                  <div className={`type ${type.type.name} `} key={i}>
+                    {type.type.name}
+                  </div>
+                );
+              })}
+
+              <Button variant="success" onClick={putPokeToDB}>
+                Ajouter le pokemon
+              </Button>
+            </div>
+          ))}
+        <br />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Header />
+        <h1>Register</h1>
+
+        <Signup id="register" />
+
+        <br />
+        <br />
+
+        <h1>Login</h1>
+
+        <Signin id="login" />
+      </div>
+    );
+  }
 }

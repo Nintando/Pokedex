@@ -11,7 +11,7 @@ const loginUser = async (req, res) => {
         .then((passwordCheck) => {
           if (!passwordCheck)
             return res
-              .status(400)
+              .status(401)
               .send({ error: "Username or Password doesn't match !" });
 
           const token = jwt.sign(
@@ -24,6 +24,7 @@ const loginUser = async (req, res) => {
           );
 
           return res.status(200).send({
+            code: 200,
             msg: "Login Successfully ! ",
             username: user.username,
             token: token,
@@ -35,7 +36,7 @@ const loginUser = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Une erreur est survenue" });
+    res.status(500).send({ message: "Une erreur est survenue" });
   }
 };
 

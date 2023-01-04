@@ -1,13 +1,10 @@
-import getPokedex from "../Pokedex";
+import getPokedex from "../Pokemon_Fetch/Pokedex";
 import "../../styles/pokeType.css";
 import { useState, useEffect } from "react";
 
 export default function Card({ pokemon }) {
   const [data, setData] = useState([]);
   const [Stats, setStats] = useState(false);
-  let name = pokemon.name;
-  let types = pokemon.types;
-  let url = pokemon.sprites.front_default;
 
   useEffect(() => {
     getPokedex().then((data) => {

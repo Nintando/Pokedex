@@ -17,9 +17,6 @@ export default function Pokedex({ data }) {
             );
           })}
         </div>
-        <button className="btn-free" onClick={() => delOnePokemon(data._id)}>
-          Libérer
-        </button>
       </div>
     </div>
   );
