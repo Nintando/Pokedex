@@ -2,7 +2,7 @@ const express = require("express");
 const pokemonRoutes = express.Router();
 const Auth = require("../middlewares/auth.middleware");
 const Poke = require("../controllers/addPoke.controller");
-const Coins = require("../controllers/coins.controller");
+const Update = require("../controllers/udpateCoinsPokeArray.controller");
 const Pokedex = require("../controllers/showPoke.controller");
 const OnePokeInPokedex = require("../middlewares/showOnePoke.middleware");
 
@@ -15,6 +15,10 @@ pokemonRoutes
   .post(OnePokeInPokedex.verifyOnePoke, Poke.addPokemon);
 
 // Routes Modifie les Coins de l'utilisateur
-pokemonRoutes.route("/pokedex/coins").patch(Auth.Auth, Coins.updateCoins)
+pokemonRoutes.route("/pokedex/update/coins").patch(Auth.Auth, Update.updateCoins)
+
+// Routes Modifie l'array des pokemons de l'utilisateur
+pokemonRoutes.route("/pokedex/update/pokedex").patch(Auth.Auth, Update.updateArrayPokemon)
+
 
 module.exports = pokemonRoutes;

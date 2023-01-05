@@ -1,23 +1,27 @@
 import "../../styles/pokeType.css";
-export default function Pokedex({ data }) {
-  return (
-    <div className="Card_Container">
-      <div>
-        <div className="Card" key={data._id}>
-          <div className="Card_img">
-            <img src={data.pokeImg} alt="" /> <br />
-          </div>
-          <div className="Card_name">{data.pokeName}</div>
+import "bootstrap/dist/css/bootstrap.min.css"; 
+import { Card } from "react-bootstrap";
 
-          {data.types.map((type, i) => {
-            return (
-              <div className={`type ${type.type.name} `} key={i}>
-                {type.type.name}
-              </div>
-            );
+export default function Pokedex({ pokemon }) {
+  return (
+    <Card style={{ width: "16rem" }}>
+        <div className="rm">#{pokemon.id}</div>
+        <Card.Title className="rm">{pokemon.name}</Card.Title>
+        <Card.Img
+          variant="top"
+          src={pokemon.sprites.front_default}
+        />
+      <Card.Body>
+        <Card.Text className="rm">
+          {pokemon.types.map((type, i) => {
+             return (
+                <span key={i} className={`type ${type.type.name}`}>
+                  {type.type.name}
+                </span>
+              );
           })}
-        </div>
-      </div>
-    </div>
-  );
+        </Card.Text>
+      </Card.Body>
+    </Card>
+);
 }

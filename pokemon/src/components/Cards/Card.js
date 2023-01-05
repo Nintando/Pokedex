@@ -1,37 +1,12 @@
-import getPokedex from "../Pokemon_Fetch/Pokedex";
 import "../../styles/pokeType.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Card({ pokemon }) {
-  const [data, setData] = useState([]);
-  const [Stats, setStats] = useState(false);
-
-  useEffect(() => {
-    getPokedex().then((data) => {
-      setData(data);
-    });
-  }, []);
-
-  const showStats = () => {
-    setStats(true);
-  };
-
-  const hideStats = () => {
-    setStats(false);
-  };
-
-  const tab = [];
-  // eslint-disable-next-line
-  data.map((data) => {
-    tab.push(data.pokeName);
-  });
 
   return (
     <div
       className="Card"
       key={pokemon._id}
-      onMouseEnter={showStats}
-      onMouseLeave={hideStats}
     >
       <div className="Card_Container">
         <div># {pokemon.id}</div>
@@ -47,16 +22,6 @@ export default function Card({ pokemon }) {
           );
         })}
       </div>
-      {Stats && (
-        <div className="stats">
-          <p>PV: {pokemon.stats[5].base_stat}</p>
-          <p>Attaque: {pokemon.stats[4].base_stat}</p>
-          <p>Défense: {pokemon.stats[3].base_stat}</p>
-          <p>Defense speciale: {pokemon.stats[2].base_stat}</p>
-          <p>Attaque speciale: {pokemon.stats[1].base_stat}</p>
-          <p>Vitesse: {pokemon.stats[0].base_stat}</p>
-        </div>
-      )}
     </div>
   );
 }

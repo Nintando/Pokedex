@@ -3,19 +3,17 @@ import CardPokedex from "../components/Cards/CardPokedex";
 import PokemonSearch from "../components/Pokemon_Fetch/PokemonSearch";
 import Signup from "../components/Sign/SignUp";
 import Signin from "../components/Sign/SignIn";
-import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
 
 import { CgPokemon } from "react-icons/cg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export default function PageAccueil() {
-  const [pokemonList, setPokemonList] = useState([]);
+  const initialArray = useMemo(()=>[],[])
+  const [pokemonList, setPokemonList] = useState(initialArray);
   const [userPoke, setUserPoke] = useState({})
-  const [pokemon, setPokemon] = useState(null);
-  const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState(null);
   const initialState = {
@@ -25,33 +23,54 @@ export default function PageAccueil() {
   };
   
   const [poke, setPoke] = useState(initialState);
-
-  console.log(userPoke)
+  const [pokeLength, setPokeLength] = useState();
 
   const token = localStorage.getItem("Token");
 
   useEffect(() =>{
-    fetch("http://localhost:5000/pokedex", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-    })
-    .then(res => res.json())
-    .then(data => {
-      setUserPoke(data)
-    })
-    .catch(err => console.log(err))
-  },[])
-
-  const coinsUpdate = () => {
-    if (userPoke.coins < 1) {
-      return alert("Vous n'avez plus de pieces ");
+    const fetchUser = async () =>{
+      await fetch("http://localhost:5000/pokedex", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      })
+      .then(res => res.json())
+      .then(data => {
+        setUserPoke(data)
+        setPokeLength(data.pokedex.length)
+        const p = () => {
+          console.log(data.pokedex)
+          const pokeDex = data.pokedex
+          pokeDex.map( async (pokemon)=> {
+            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+            .then((response) => response.json())
+            .then((pokemon) => {
+              initialArray.push(pokemon)
+            })
+          }
+          )
+        }
+        setPokemonList(initialArray)
+        p()
+      })
+      .catch(err => console.log(err))
     }
+    fetchUser()
+  },[pokemonList])
 
+  console.log(userPoke)
+  console.log(pokeLength)
+  console.log(pokemonList)
+
+  // Update the Coins
+  const coinsUpdate = () => {
+    if(userPoke.coins < 1){
+      return
+    }
     // modifie Coins
-    fetch("http://localhost:5000/pokedex/coins", {
+    fetch("http://localhost:5000/pokedex/update/coins", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -64,25 +83,53 @@ export default function PageAccueil() {
     .catch(err => console.log(err))
   };
 
+ //Generate Random Pokemon
   const randomPokemon = () =>{
-    const randomNumber = Math.floor(Math.random() * 905) + 1;
+    const random = Math.floor(Math.random()*2)
 
-    // Affiche Pokemon obtenue aléatoirement
-    fetch(`https://pokeapi.co/api/v2/pokemon/${randomNumber}`)
-      .then((res) => res.json())
-      .then((pokemonData) => {
-        setPokemon(pokemonData);
-        console.log(pokemonData);
-        setPokemonList((prevList) => [...prevList, pokemonData]);
+    if(random === 1){
+      const randomNumber = Math.floor(Math.random() * 905) + 1;
+      fetch(`http://localhost:5000/pokedex/update/pokedex`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          pokedex: randomNumber,
+        }),
       })
-  }
-
+      .catch(err => console.log(err))
+    }
+    else{
+      const randomNumber = Math.floor(Math.random() * (10249 - 10001)) + 10001;
+      fetch(`http://localhost:5000/pokedex/update/pokedex`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          pokedex: randomNumber,
+        }),
+      })
+      .catch(err => console.log(err))
+    }
+}
 
   const handleOnClick = () =>{
     coinsUpdate()
+    if(userPoke.coins < 1){
+      alert("Vous n'avez plus de coins")
+      return
+    }
     randomPokemon()
+    window.location.reload();
   }
 
+  // Search Button
   const handleClick = async () => {
     try {
       if (search.length === 0) {
@@ -95,6 +142,7 @@ export default function PageAccueil() {
     }
   };
 
+  // SearchBar
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
       .then((response) => response.json())
@@ -106,25 +154,7 @@ export default function PageAccueil() {
         });
       });
   }, [search]);
-
-  // const putPokeToDB = async () => {
-  //   if (tab.includes(search)) {
-  //     return alert("existe deja");
-  //   } else {
-  //     fetch("http://localhost:5000/allPokemon", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         pokeName: poke.name,
-  //         pokeTypes: poke.types,
-  //         pokeImg: poke.url,
-  //       }),
-  //       headers: { "Content-Type": "application/json" },
-  //     })
-  //       .then(alert("Vous avez ajouté le pokemon dans votre Pokédex"))
-  //       .then(window.location.reload(true));
-  //   }
-  // };
-
+  
   if (token !== null) {
     return (
       <div className="app-container">
@@ -150,30 +180,10 @@ export default function PageAccueil() {
             <p>Pièces: {userPoke.coins}</p>
             <div className="d-flex justify-content-center">
               {pokemonList.map((pokemon, i) => {
-                return (
-                  <Card key={i} style={{ width: "16rem" }}>
-                    <div className="rm">#{pokemon.id}</div>
-                    <Card.Title className="rm">{pokemon.name}</Card.Title>
-                    <Card.Img
-                      variant="top"
-                      src={pokemon.sprites.front_default}
-                    />
-                    <Card.Body>
-                      <Card.Text className="rm">
-                        {pokemon.types.map((type) => {
-                          return (
-                            <span className={`type ${type.type.name}`}>
-                              {type.type.name}
-                            </span>
-                          );
-                        })}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                );
+                return <CardPokedex key={i} pokemon={pokemon}/>
               })}
             </div>
-          </div>{" "}
+          </div>
         </div>
         {details &&
           (details.error ? (
