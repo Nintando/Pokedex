@@ -1,0 +1,66 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #edebeb;
+
+
+}
+
+
+.btn-del{
+  border-radius: 24px;
+  font-family: Fantasy;
+  text-align: center;
+
+}
+#del {
+  margin-top: 20px;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: large;
+  padding: 0 40px;
+  background: lightblue;
+  border-radius: 33px;
+  box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+}
+#del:hover {
+  background: #ff0c0c;
+  color: white;
+  position: relative;
+  top: 10px;
+  box-shadow: none;
+}
+#gen-button {
+  margin-top: 20px;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: large;
+  padding: 0 40px;
+  background: rgba(243, 243, 244, 0.562);
+  border-radius: 33px;
+  box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
+}
+.btn-add{
+    border-radius: 24px;
+    font-family: Fantasy;
+}.btn-previous{
+    padding: 3px;
+    width: 100%;
+    border-radius: 24px;
+  font-family: Fantasy;
+  
+}
+.btn-free{
+
+    font-family: Fantasy;
+
+}
+.btn-next{
+    padding: 3px;
+    display: block;
+    width: 100%;
+    border-radius: 24px;
+    font-family: Fantasy;
+    margin-right: 20px;
+    
+}
