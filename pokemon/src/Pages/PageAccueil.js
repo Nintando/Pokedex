@@ -5,12 +5,21 @@ export default function PageAccueil() {
   return (
     <div
       class="Accueil"
-      style={{ backgroundImage: `url(${image})`, backgroundRepeat: "repeat" }}
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100%",
+      }}
     >
-      <br /> <br />
       <div>
-        <Header></Header>
+        <header>
+          <h1 className="write">Poke API</h1>
+          <br />
+          <Header></Header>
+        </header>
       </div>
+      <div></div>
     </div>
   );
 }

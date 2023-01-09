@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "../components/Cards/Card";
 import getPokemon from "../components/Pokemon_Fetch/Pokemon";
 import Header from "../Header";
+import image from "../img/t1.jpg";
 
 export default function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -67,18 +68,19 @@ export default function App() {
       {pokemonData.map((pokemon, i) => {
         return <Card key={i} pokemon={pokemon} />;
       })}
-      <br />
-      {url.previous && (
-        <button className="btn-previous" onClick={previous}>
-          Previous
-        </button>
-      )}
-      {url.next && (
-        <button className="btn-next" onClick={next}>
-          Next
-        </button>
-      )}
-      <br />
+
+      <div className="action_btn">
+        {url.previous && (
+          <button className="btn-load" onClick={previous}>
+            Previous
+          </button>
+        )}
+        {url.next && (
+          <button className="btn-load" onClick={next}>
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
 }

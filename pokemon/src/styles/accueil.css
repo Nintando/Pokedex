@@ -1,76 +1,66 @@
-.Accueil{
-    text-align:center;
-    font-size: 65px;
-    color: rgb(235, 234, 238);
-    font-weight: 900;
-
+.Accueil {
+  text-align: center;
+  font-size: 65px;
+  color: rgb(235, 234, 238);
+  font-weight: 900;
 }
-
 
 #global {
-    margin-left: auto;
-    margin-right: auto;
-    
-  }
-
-.Card{
-    color: rgb(0, 0, 0);
-    text-align: center;
-    align-items: center;
-    display: inline-flex;
-    width: 100%;
-    flex-direction: column;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
-    max-width: 18rem;
-    align-content:center;
-    
-  
+  margin-left: auto;
+  margin-right: auto;
 }
-.Card_name{
+
+.Card {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
+  max-width: 18rem;
+  align-content: center;
+}
+.Card_name {
   box-sizing: content-box;
   font-weight: bold;
 }
 
-.type2{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.type2 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: lighter;
   font-weight: bold;
 }
 
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+  background-image: url("./img/test1.jpg");
+}
 
-html, body, #root, #root>div {
-    height: 100%;
-    background-image: url("./img/test1.jpg");
-    
-    
-  
-  }
-  
 .nav-link {
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: 900;
-    font-size: 1.5em;
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 900;
+  font-size: 1.5em;
 }
 
-
-
-.Ecriture{
-    border-radius: 30px;
-    color: rgba(0, 0, 0, 0.908);
-    font-family: Verdana;
-    background-color: #9dbfaf03; 
-    
+.Ecriture {
+  border-radius: 30px;
+  color: rgba(0, 0, 0, 0.908);
+  font-family: Verdana;
+  background-color: #9dbfaf03;
 }
-.Pokedex{
-text-align: center;
-position: fixed;
+.Pokedex {
+  text-align: center;
+  position: fixed;
   width: 600px;
   height: 200px;
   left: 50%;
   top: 30%;
   margin-left: -300px; /*half the width*/
-
-    
 }
-

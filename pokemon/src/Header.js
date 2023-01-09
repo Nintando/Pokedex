@@ -8,21 +8,32 @@ export default function Header() {
   };
 
   return (
-    <div>
-      <Link className="nav-link " to="/">
-        Accueil
-      </Link>
-      <Link className="nav-link " to="/allPokemon">
-        Pokemon
-      </Link>
-      <Link className="nav-link " to="/myPokedex">
-        Pokedex
-      </Link>
-      <Link className="nav-link " to="/pokeFight">
-        PokeFight
-      </Link>
-
-      {token ? <button onClick={handleClick}>Logout</button> : null}
+    <div className="link" style={{}}>
+      <div className="link-1">
+        <Link className="nav-link" to="/">
+          Accueil
+        </Link>
+      </div>
+      <div className="link-2">
+        <Link className="nav-link" to="/allPokemon">
+          Pokemon
+        </Link>
+      </div>
+      <div className="link-2">
+        <Link className="nav-link" to="/myPokedex">
+          Pokedex
+        </Link>
+      </div>
+      <div className="link-2">
+        <Link className="nav-link" to="/pokeFight">
+          PokeFight
+        </Link>
+      </div>
+      {token ? (
+        <button className="Logout" onClick={handleClick}>
+          Logout
+        </button>
+      ) : null}
     </div>
   );
 }

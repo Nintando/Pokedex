@@ -5,6 +5,7 @@ import CardPokedex from "../components/Cards/CardPokedex";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
+import "../styles/app.css";
 
 import { useState, useEffect, useMemo } from "react";
 
@@ -64,7 +65,7 @@ export default function PagePokeFight() {
     );
   } else {
     return (
-      <div>
+      <div className="register_login">
         <Header />
         <h1>Register</h1>
 

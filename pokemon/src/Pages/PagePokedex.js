@@ -6,6 +6,7 @@ import Signin from "../components/Sign/SignIn";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
+import "../styles/app.css";
 
 import { CgPokemon } from "react-icons/cg";
 import { useState, useEffect, useMemo } from "react";
@@ -19,11 +20,11 @@ export default function PageAccueil() {
 
   const token = localStorage.getItem("Token");
 
+  // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
   }, [pokemonList]);
 
-  // Get UserData & Show pokemon of the User
   const fetchUser = async () => {
     await fetch("http://localhost:5000/pokedex", {
       method: "GET",
@@ -56,7 +57,7 @@ export default function PageAccueil() {
     if (userPoke.coins < 1) {
       return;
     }
-    // modify Coins
+    // modifie Coins
     fetch("http://localhost:5000/pokedex/update/coins", {
       method: "PATCH",
       headers: {
@@ -129,8 +130,6 @@ export default function PageAccueil() {
     return (
       <div className="app-container">
         <Header />
-        <h1>Nom de l'utilisateur : {userPoke.username}</h1>
-        <h1>Coins de l'utilisateur : {userPoke.coins}</h1>
         <input
           className="SearchBar"
           value={search}
@@ -147,7 +146,9 @@ export default function PageAccueil() {
             </button>
             <br />
 
-            <p>Pièces: {userPoke.coins}</p>
+            <p className="coin">
+              {userPoke.username} vous avez {userPoke.coins} pièces{" "}
+            </p>
             <div className="d-flex justify-content-center">
               {pokemonList.map((pokemon, i) => {
                 return <CardPokedex key={i} pokemon={pokemon} />;
@@ -176,7 +177,7 @@ export default function PageAccueil() {
     );
   } else {
     return (
-      <div>
+      <div className="register_login">
         <Header />
         <h1>Register</h1>
 

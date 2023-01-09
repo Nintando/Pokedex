@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import "./app.css";
+import "../src/styles/app.css";
+
 import PageAccueil from "./Pages/PageAccueil";
 import PagePokemon from "./Pages/PagePokemon";
 import PagePokedex from "./Pages/PagePokedex";

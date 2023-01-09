@@ -1,0 +1,130 @@
+.Accueil {
+  text-align: center;
+  font-size: 65px;
+  font-weight: 900;
+}
+.header {
+  font-size: 36px;
+  /* ou */
+  padding: 20px;
+}
+#global {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Card {
+  text-align: center;
+  align-items: center;
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
+  box-shadow: 0 3px 15px rgba(248, 242, 242, 0.582);
+  max-width: 18rem;
+  align-content: center;
+  height: 210px;
+  max-width: 370px;
+}
+.Card_name {
+  box-sizing: content-box;
+  font-weight: bold;
+}
+
+.type2 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  font-weight: bold;
+}
+
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+  background-color: #c2b280;
+  color: rgb(0, 0, 0);
+}
+
+.nav-link {
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.Pokedex {
+  text-align: center;
+  position: fixed;
+  width: 600px;
+  height: 200px;
+  left: 50%;
+  top: 30%;
+  margin-left: -300px; /*half the width*/
+}
+.rm {
+  color: black;
+}
+.app-container {
+  background-image: url("../img/t1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.coin {
+  font-size: x-large;
+}
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(7, 7, 7);
+  text-decoration: none;
+  text-transform: capitalize;
+  padding: 10px 30px;
+  margin: 0 20px;
+  transition: 0.5s;
+  font-size: 20px;
+}
+.link-1 {
+  margin: 0 20px;
+}
+.link-2 {
+  margin: 0 20px;
+}
+.Logout {
+  border-radius: 50px;
+  font-family: "Arial", sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.btn-load {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #949628;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action_btn {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.SearchBar {
+  align-items: center;
+  margin-top: 10%;
+}
+
+.register_login {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  text-align: center;
+}
