@@ -63,12 +63,12 @@ export default function App() {
   }, [pokemon]);
 
   return (
-    <div>
-      <Header />
+    <div className="bck">
+      <div className="HeaderPokemon"><Header /></div>
+  
       {pokemonData.map((pokemon, i) => {
         return <Card key={i} pokemon={pokemon} />;
       })}
-
       <div className="action_btn">
         {url.previous && (
           <button className="btn-load" onClick={previous}>

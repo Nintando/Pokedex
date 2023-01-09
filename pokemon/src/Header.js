@@ -8,7 +8,7 @@ export default function Header() {
   };
 
   return (
-    <div className="link" style={{}}>
+    <div className="link" >
       <div className="link-1">
         <Link className="nav-link" to="/">
           Accueil
@@ -24,7 +24,7 @@ export default function Header() {
           Pokedex
         </Link>
       </div>
-      <div className="link-2">
+      <div className="link-3">
         <Link className="nav-link" to="/pokeFight">
           PokeFight
         </Link>

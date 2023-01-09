@@ -4,10 +4,12 @@ import { Card } from "react-bootstrap";
 
 export default function Pokedex({ pokemon }) {
   return (
-    <Card style={{ width: "19rem" }}>
+    
+    <div className="PokedexCard">
+    <Card  className="border-dark" style={{ width: "10rem" , backgroundColor: "transparent"}}>
       <div className="rm">#{pokemon.id}</div>
       <Card.Title className="rm">{pokemon.name}</Card.Title>
-      <Card.Img variant="top" src={pokemon.sprites.front_default} />
+      <Card.Img  src={pokemon.sprites.front_default} />
       <Card.Body>
         <Card.Text className="rm">
           {" "}
@@ -21,5 +23,7 @@ export default function Pokedex({ pokemon }) {
         </Card.Text>
       </Card.Body>
     </Card>
+    </div>
   );
+  
 }

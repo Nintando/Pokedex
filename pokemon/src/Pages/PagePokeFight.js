@@ -51,7 +51,8 @@ export default function PagePokeFight() {
 
   if (token !== null) {
     return (
-      <div className="app-container">
+
+      <div className="app-container1">
         <Header />
         <h1>Nom de l'utilisateur : {userPoke.username}</h1>
         <div className="Pokedex">
@@ -62,6 +63,7 @@ export default function PagePokeFight() {
           </div>
         </div>
       </div>
+      
     );
   } else {
     return (

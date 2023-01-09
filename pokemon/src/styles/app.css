@@ -19,11 +19,12 @@
   display: inline-flex;
   width: 100%;
   flex-direction: column;
-  box-shadow: 0 3px 15px rgba(248, 242, 242, 0.582);
+  box-shadow: 0 3px 15px rgb(0, 0, 0);
   max-width: 18rem;
   align-content: center;
   height: 210px;
   max-width: 370px;
+  color: black;
 }
 .Card_name {
   box-sizing: content-box;
@@ -42,8 +43,8 @@ body,
 #root,
 #root > div {
   height: 100%;
-  background-color: #c2b280;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+ background-color: rgba(9, 87, 94, 0.873);
 }
 
 .nav-link {
@@ -61,14 +62,34 @@ body,
   top: 30%;
   margin-left: -300px; /*half the width*/
 }
+.PokedexCard{
+  width: 19rem;
+
+}
+.card-window {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 500px;
+  height: 600px;
+}
 .rm {
-  color: black;
+  color: rgb(249, 248, 248);
+  background-color: rgb(22, 19, 19);
+  opacity: 0.9;
 }
 .app-container {
   background-image: url("../img/t1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.app-container1{
+  background-image: url("../img/e.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .coin {
   font-size: x-large;
@@ -78,6 +99,7 @@ body,
   justify-content: center;
   align-items: center;
   color: rgb(7, 7, 7);
+  background-color: transparent;
   text-decoration: none;
   text-transform: capitalize;
   padding: 10px 30px;
@@ -89,6 +111,10 @@ body,
   margin: 0 20px;
 }
 .link-2 {
+  margin: 0 20px;
+  
+}
+.link-3 {
   margin: 0 20px;
 }
 .Logout {
@@ -104,7 +130,7 @@ body,
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #949628;
+  background-color: #17279f;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -128,3 +154,47 @@ body,
   justify-content: center;
   text-align: center;
 }
+.bck{
+  background-image: url('../img/s.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+.Card2{
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgb(5, 2, 2);
+  height: 330px;
+  max-width: 250px;
+  align-items: center;
+}
+.register_login{
+  align-items: center;
+  background-image: url(../img/733114.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+.RegisterCard{
+padding-top: 10%;
+text-align: center;
+color: #040404;
+
+}
+
+
