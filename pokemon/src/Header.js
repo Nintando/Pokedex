@@ -18,6 +18,9 @@ export default function Header() {
       <Link className="nav-link " to="/myPokedex">
         Pokedex
       </Link>
+      <Link className="nav-link " to="/pokeFight">
+        PokeFight
+      </Link>
 
       {token ? <button onClick={handleClick}>Logout</button> : null}
     </div>

@@ -1,13 +1,8 @@
 import "../../styles/pokeType.css";
-import { useState } from "react";
 
 export default function Card({ pokemon }) {
-
   return (
-    <div
-      className="Card"
-      key={pokemon._id}
-    >
+    <div className="Card" key={pokemon._id}>
       <div className="Card_Container">
         <div># {pokemon.id}</div>
         <div className="Card_name">{pokemon.name}</div>

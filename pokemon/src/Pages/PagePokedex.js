@@ -11,123 +11,106 @@ import { CgPokemon } from "react-icons/cg";
 import { useState, useEffect, useMemo } from "react";
 
 export default function PageAccueil() {
-  const initialArray = useMemo(()=>[],[])
+  const initialArray = useMemo(() => [], []);
   const [pokemonList, setPokemonList] = useState(initialArray);
-  const [userPoke, setUserPoke] = useState({})
+  const [userPoke, setUserPoke] = useState({});
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState(null);
-  const initialState = {
-    name: String,
-    types: [String],
-    url: String,
-  };
-  
-  const [poke, setPoke] = useState(initialState);
-  const [pokeLength, setPokeLength] = useState();
 
   const token = localStorage.getItem("Token");
 
-  useEffect(() =>{
-    const fetchUser = async () =>{
-      await fetch("http://localhost:5000/pokedex", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-      })
-      .then(res => res.json())
-      .then(data => {
-        setUserPoke(data)
-        setPokeLength(data.pokedex.length)
-        const p = () => {
-          console.log(data.pokedex)
-          const pokeDex = data.pokedex
-          pokeDex.map( async (pokemon)=> {
-            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-            .then((response) => response.json())
-            .then((pokemon) => {
-              initialArray.push(pokemon)
-            })
-          }
-          )
-        }
-        setPokemonList(initialArray)
-        p()
-      })
-      .catch(err => console.log(err))
-    }
-    fetchUser()
-  },[pokemonList])
+  useEffect(() => {
+    fetchUser();
+  }, [pokemonList]);
 
-  console.log(userPoke)
-  console.log(pokeLength)
-  console.log(pokemonList)
+  // Get UserData & Show pokemon of the User
+  const fetchUser = async () => {
+    await fetch("http://localhost:5000/pokedex", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserPoke(data);
+        const p = () => {
+          const pokeDex = data.pokedex;
+          pokeDex.map(async (pokemon) => {
+            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+              .then((response) => response.json())
+              .then((pokemon) => {
+                initialArray.push(pokemon);
+              });
+          });
+        };
+        setPokemonList(initialArray);
+        p();
+      })
+      .catch((err) => console.log(err));
+  };
 
   // Update the Coins
   const coinsUpdate = () => {
-    if(userPoke.coins < 1){
-      return
+    if (userPoke.coins < 1) {
+      return;
     }
-    // modifie Coins
+    // modify Coins
     fetch("http://localhost:5000/pokedex/update/coins", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        coins: userPoke.coins-1,
+        coins: userPoke.coins - 1,
       }),
-    })
-    .catch(err => console.log(err))
+    }).catch((err) => console.log(err));
   };
 
- //Generate Random Pokemon
-  const randomPokemon = () =>{
-    const random = Math.floor(Math.random()*2)
+  //Generate Random Pokemon
+  const randomPokemon = () => {
+    const random = Math.floor(Math.random() * 2);
 
-    if(random === 1){
+    if (random === 1) {
       const randomNumber = Math.floor(Math.random() * 905) + 1;
-      fetch(`http://localhost:5000/pokedex/update/pokedex`,
-      {
+      fetch(`http://localhost:5000/pokedex/update/pokedex`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           pokedex: randomNumber,
         }),
-      })
-      .catch(err => console.log(err))
-    }
-    else{
+      }).catch((err) => console.log(err));
+    } else {
       const randomNumber = Math.floor(Math.random() * (10249 - 10001)) + 10001;
-      fetch(`http://localhost:5000/pokedex/update/pokedex`,
-      {
+      fetch(`http://localhost:5000/pokedex/update/pokedex`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           pokedex: randomNumber,
         }),
-      })
-      .catch(err => console.log(err))
+      }).catch((err) => console.log(err));
     }
-}
+  };
 
-  const handleOnClick = () =>{
-    coinsUpdate()
-    if(userPoke.coins < 1){
-      alert("Vous n'avez plus de coins")
-      return
+  // Modify Coins then Generate Random Pokemon as Button function
+  const handleOnClick = () => {
+    coinsUpdate();
+    if (userPoke.coins < 1) {
+      alert("Vous n'avez plus de coins");
+      window.location.reload();
+      return;
     }
-    randomPokemon()
+    randomPokemon();
     window.location.reload();
-  }
+  };
 
   // Search Button
   const handleClick = async () => {
@@ -142,19 +125,6 @@ export default function PageAccueil() {
     }
   };
 
-  // SearchBar
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
-      .then((response) => response.json())
-      .then((pokemon) => {
-        setPoke({
-          name: pokemon.name,
-          types: pokemon.types,
-          url: pokemon.sprites.front_default,
-        });
-      });
-  }, [search]);
-  
   if (token !== null) {
     return (
       <div className="app-container">
@@ -180,7 +150,7 @@ export default function PageAccueil() {
             <p>Pièces: {userPoke.coins}</p>
             <div className="d-flex justify-content-center">
               {pokemonList.map((pokemon, i) => {
-                return <CardPokedex key={i} pokemon={pokemon}/>
+                return <CardPokedex key={i} pokemon={pokemon} />;
               })}
             </div>
           </div>

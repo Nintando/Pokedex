@@ -6,6 +6,7 @@ import "./app.css";
 import PageAccueil from "./Pages/PageAccueil";
 import PagePokemon from "./Pages/PagePokemon";
 import PagePokedex from "./Pages/PagePokedex";
+import PagePokeFight from "./Pages/PagePokeFight";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,6 +16,7 @@ root.render(
         <Route path="/" element={<PageAccueil />} />
         <Route path="/allPokemon" element={<PagePokemon />} />
         <Route path="/myPokedex" element={<PagePokedex />} />
+        <Route path="/pokeFight" element={<PagePokeFight />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "../components/Cards/Card";
 import getPokemon from "../components/Pokemon_Fetch/Pokemon";
 import Header from "../Header";
+
 export default function App() {
   const [pokemon, setPokemon] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
