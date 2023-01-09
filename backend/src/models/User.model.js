@@ -1,4 +1,4 @@
-const { model, Schema, default: mongoose } = require("mongoose");
+const { model, Schema } = require("mongoose");
 const conn = require("../Conn");
 
 const userSchema = new Schema({
@@ -6,6 +6,8 @@ const userSchema = new Schema({
   password: String,
   pokedex: [],
   coins: Number,
+  isReady: Boolean,
+  PokeFight: [],
   createAt: {
     type: Date,
     default: Date.now,

@@ -3,13 +3,14 @@ import CardPokedex from "../components/Cards/CardPokedex";
 import PokemonSearch from "../components/Pokemon_Fetch/PokemonSearch";
 import Signup from "../components/Sign/SignUp";
 import Signin from "../components/Sign/SignIn";
+
+import { CgPokemon } from "react-icons/cg";
+import { useState, useEffect, useMemo } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
 import "../styles/app.css";
-
-import { CgPokemon } from "react-icons/cg";
-import { useState, useEffect, useMemo } from "react";
 
 export default function PageAccueil() {
   const initialArray = useMemo(() => [], []);

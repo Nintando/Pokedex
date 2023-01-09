@@ -2,12 +2,13 @@ import Header from "../Header";
 import Signup from "../components/Sign/SignUp";
 import Signin from "../components/Sign/SignIn";
 import CardPokedex from "../components/Cards/CardPokedex";
+
+import { useState, useEffect, useMemo } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
 import "../styles/app.css";
-
-import { useState, useEffect, useMemo } from "react";
 
 export default function PagePokeFight() {
   const initialArray = useMemo(() => [], []);
@@ -16,6 +17,7 @@ export default function PagePokeFight() {
 
   const token = localStorage.getItem("Token");
 
+  // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
   }, [pokemonList]);
@@ -53,12 +55,10 @@ export default function PagePokeFight() {
         <Header />
         <h1>Nom de l'utilisateur : {userPoke.username}</h1>
         <div className="Pokedex">
-          <div>
-            <div className="d-flex justify-content-center">
-              {pokemonList.map((pokemon, i) => {
-                return <CardPokedex key={i} pokemon={pokemon} />;
-              })}
-            </div>
+          <div className="d-flex justify-content-center">
+            {pokemonList.map((pokemon, i) => {
+              return <CardPokedex key={i} pokemon={pokemon} />;
+            })}
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
 import Card from "../components/Cards/Card";
 import getPokemon from "../components/Pokemon_Fetch/Pokemon";
 import Header from "../Header";
-import image from "../img/t1.jpg";
+
+import { useState, useEffect } from "react";
 
 export default function App() {
   const [pokemon, setPokemon] = useState([]);
