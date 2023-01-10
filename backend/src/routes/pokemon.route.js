@@ -1,24 +1,32 @@
 const express = require("express");
 const pokemonRoutes = express.Router();
+
 const Auth = require("../middlewares/auth.middleware");
-const Poke = require("../controllers/addPoke.controller");
 const Update = require("../controllers/udpateCoinsPokeArray.controller");
 const Pokedex = require("../controllers/showPoke.controller");
-const OnePokeInPokedex = require("../middlewares/showOnePoke.middleware");
+const PokeFight = require("../controllers/pokefight.controller");
 
-// Routes Affichage des pokemons de l'utilisateur
+// Route Affichage des pokemons de l'utilisateur
 pokemonRoutes.route("/pokedex").get(Auth.Auth, Pokedex.showPokedex);
 
-// This section will help you create a new record.
+// Route Modifie les Coins de l'utilisateur
 pokemonRoutes
-  .route("/add")
-  .post(OnePokeInPokedex.verifyOnePoke, Poke.addPokemon);
+  .route("/pokedex/update/coins")
+  .patch(Auth.Auth, Update.updateCoins);
 
-// Routes Modifie les Coins de l'utilisateur
-pokemonRoutes.route("/pokedex/update/coins").patch(Auth.Auth, Update.updateCoins)
+// Route Modifie l'array des pokemons de l'utilisateur
+pokemonRoutes
+  .route("/pokedex/update/pokedex")
+  .patch(Auth.Auth, Update.updateArrayPokemon);
 
-// Routes Modifie l'array des pokemons de l'utilisateur
-pokemonRoutes.route("/pokedex/update/pokedex").patch(Auth.Auth, Update.updateArrayPokemon)
+// Route Indique si l'utilisateur est prêt pour le combat
+pokemonRoutes
+  .route("/pokeFight/ready")
+  .patch(Auth.Auth, PokeFight.readyToFight);
 
+// Route Ajoute un pokemon pour le combat
+pokemonRoutes
+  .route("/pokeFight/matchmaking")
+  .patch(Auth.Auth, PokeFight.teamFighter);
 
 module.exports = pokemonRoutes;

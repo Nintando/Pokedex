@@ -162,19 +162,17 @@ export default function PageAccueil() {
             <h1>{details.error}</h1>
           ) : (
             <div className="Card2">
-              <h2 >#{details.id}</h2> 
-            <h1 >{details.name}</h1>
-            <img src={details.sprites.front_default} alt="" />
-            {details.types.map((type, i) => {
-              return (
-                <span key={i} className={`type ${type.type.name}`}>
-              {type.type.name}
-            </span>
-            );
-            })}
-            
-          </div>
-            
+              <h2>#{details.id}</h2>
+              <h1>{details.name}</h1>
+              <img src={details.sprites.front_default} alt="" />
+              {details.types.map((type, i) => {
+                return (
+                  <span key={i} className={`type ${type.type.name}`}>
+                    {type.type.name}
+                  </span>
+                );
+              })}
+            </div>
           ))}
         <br />
       </div>
@@ -184,17 +182,17 @@ export default function PageAccueil() {
       <div className="register_login">
         <Header />
         <div className="RegisterCard">
-        <h1>Register</h1>
+          <h1>Register</h1>
 
-        <Signup id="register" />
+          <Signup id="register" />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <h1>Login</h1>
+          <h1>Login</h1>
 
-        <Signin id="login" />
-      </div>
+          <Signin id="login" />
+        </div>
       </div>
     );
   }

@@ -6,7 +6,10 @@ const userSchema = new Schema({
   password: String,
   pokedex: [],
   coins: Number,
-  isReady: Boolean,
+  isReady: {
+    type: Boolean,
+    default: false,
+  },
   PokeFight: [],
   createAt: {
     type: Date,
