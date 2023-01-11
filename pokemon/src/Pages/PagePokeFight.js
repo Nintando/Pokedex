@@ -17,7 +17,6 @@ export default function PagePokeFight() {
   const [pokemonEquipe, setPokemonEquipe] = useState(initialArray2);
   const [userPoke, setUserPoke] = useState({});
   const [pokeName, setPokeName] = useState("");
-  const [ready, setReady] = useState(false);
 
   const token = localStorage.getItem("Token");
 
@@ -74,7 +73,6 @@ export default function PagePokeFight() {
     if (arrayFighter.length === 0) {
       return alert("Select at least 1 pokemon ! ");
     } else {
-      setReady(true);
       await fetch(`http://localhost:5000/pokeFight/ready`, {
         method: "PATCH",
         headers: {
@@ -82,7 +80,7 @@ export default function PagePokeFight() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          isReady: ready,
+          isReady: true,
         }),
       }).catch((err) => console.log(err));
     }
@@ -90,7 +88,7 @@ export default function PagePokeFight() {
 
   // Player choose which pokemon to use
   const pokeFighters = async (name) => {
-    await fetch(`http://localhost:5000/pokeFight/matchmaking`, {
+    await fetch(`http://localhost:5000/pokeFight/team`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
