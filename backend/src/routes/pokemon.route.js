@@ -19,8 +19,11 @@ pokemonRoutes
   .route("/pokedex/update/pokedex")
   .patch(Auth.Auth, Update.updateArrayPokemon);
 
-// Route Indique si l'utilisateur est prêt pour le combat
-pokemonRoutes.route("/pokeFight/ready").patch(Auth.Auth, PokeFight.matchmaking);
+// Route l'utilisateur se met en prêt
+pokemonRoutes.route("/pokeFight/ready").patch(Auth.Auth, PokeFight.ready);
+
+// Route Recherche Joueurs qui sont prêt puis lance le match
+pokemonRoutes.route("/pokeFight/games").get(Auth.Auth, PokeFight.games);
 
 // Route Ajoute un pokemon pour le combat
 pokemonRoutes.route("/pokeFight/team").patch(Auth.Auth, PokeFight.teamFighter);

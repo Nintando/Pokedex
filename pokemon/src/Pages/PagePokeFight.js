@@ -23,7 +23,7 @@ export default function PagePokeFight() {
   // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
-  }, [pokemonList]);
+  }, [pokemonList, pokemonEquipe]);
 
   const fetchUser = async () => {
     await fetch("http://localhost:5000/pokedex", {
@@ -100,10 +100,28 @@ export default function PagePokeFight() {
     }).catch((err) => console.log(err));
   };
 
+  // Get the pokemon battle
+  const pokeBattle = async () => {
+    await fetch(`http://localhost:5000/pokeFight/games`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => console.log(res.json()))
+      .catch((err) => console.log(err));
+  };
+
+  const handleClickPokeFighters = (props) => {
+    pokeFighters(props);
+  };
+
   if (token !== null) {
     return (
       <div className="app-container1">
         <Header />
+        <button onClick={pokeBattle}> Battle </button>
         <h1>Nom de l'utilisateur : {userPoke.username}</h1>
         <button onClick={isReady}>Ready</button>
         <h1>Votre Equipe : </h1>
@@ -121,7 +139,7 @@ export default function PagePokeFight() {
                 <div key={i}>
                   <button
                     onClick={() => {
-                      pokeFighters(pokemon.name);
+                      handleClickPokeFighters(pokemon.name);
                     }}
                   >
                     <CardPokedex key={i} pokemon={pokemon} />
