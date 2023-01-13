@@ -7,7 +7,7 @@ export default function Pokedex({ pokemon }) {
     <div className="PokedexCard">
       <Card
         className="border-dark"
-        style={{ width: "10rem", backgroundColor: "transparent" }}
+        style={{ width: "13rem", backgroundColor: "transparent" }}
       >
         <div className="rm">#{pokemon.id}</div>
         <Card.Title className="rm">{pokemon.name}</Card.Title>

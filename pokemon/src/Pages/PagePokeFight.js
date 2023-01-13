@@ -106,23 +106,27 @@ export default function PagePokeFight() {
     return (
       <div className="app-container1">
         <Header />
-        <button onClick={pokeBattle}> Battle </button>
-        <h1>Nom de l'utilisateur : {userPoke.username}</h1>
-        <button onClick={isReady}>Ready</button>
-        <h1>Votre Equipe : </h1>
+        <div >
+        <button className="battle-btn" onClick={pokeBattle}> Fight </button>
+        <button className="ready-btn" onClick={isReady}>Ready</button>
+        </div>
+        <div className="infoUser"> 
+        <h1>Dresseur : {userPoke.username}</h1>
+        <h1>Selectionner vos pokemon :  </h1></div>
+     
 
-        <div>
+        <div className="FightCard">
           {pokemonEquipe.map((pokemon, i) => {
             return <CardPokedex key={i} pokemon={pokemon} />;
           })}
         </div>
-
+            
         <div className="Pokedex">
           <div className="d-flex justify-content-center">
             {pokemonList.map((pokemon) => {
               return (
                 <div key={pokemon.id}>
-                  <button
+                  <button className="btn-hide"
                     onClick={() => {
                       handleClickPokeFighters(pokemon.name);
                     }}

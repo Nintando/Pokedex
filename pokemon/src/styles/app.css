@@ -52,6 +52,11 @@ body,
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+.infoUser{
+text-align: center;
+color: #040404;
+background-color: #f1f1f10c;
+}
 
 .Pokedex {
   text-align: center;
@@ -59,13 +64,73 @@ body,
   width: 600px;
   height: 200px;
   left: 50%;
-  top: 30%;
+  top: 20%;
   margin-left: -300px; /*half the width*/
 }
 .PokedexCard{
-  width: 19rem;
+  width: 13rem;
+  background-color: rgba(237, 233, 233, 0.477);
+  height: 320px;
+}
+.FightCard{
+  text-align: center;
+  display: flex;
+  position: fixed;
+  height: 200px;
+  left: 44%;
+  top: 60%;
+  margin-left: -300px; /*half the width*/
+  
+}
+.btn-hide{
+  background-color: transparent;
+  border: transparent;
+}
+.battle-btn {
+  position: fixed;
+  right: 60px; 
+  top: 55%; 
+  appearance: none;
+  background-color: #f6400ee7;
+  border-radius: 33px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 45px;
+}
+.ready-btn{
+  position: fixed;
+  left: 60px; 
+  top: 55%; 
+  appearance: none;
+  background-color: #0ef65faf;
+  border-radius: 33px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 45px;
+  
 
 }
+
+.button-68:hover {
+  background-color: #1e8449;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+.button-68:active {
+  transform: translateY(2px);
+  transition-duration: .35s;
+}
+
+.button-68:hover {
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+  
+
+
 .card-window {
   background-color: white;
   border-radius: 10px;
@@ -74,9 +139,7 @@ body,
   height: 600px;
 }
 .rm {
-  color: rgb(249, 248, 248);
-  background-color: rgb(22, 19, 19);
-  opacity: 0.9;
+  color: rgb(5, 5, 5);
 }
 .app-container {
   background-image: url("../img/t1.jpg");
