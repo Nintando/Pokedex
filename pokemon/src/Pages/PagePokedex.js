@@ -21,6 +21,8 @@ export default function PageAccueil() {
 
   const token = localStorage.getItem("Token");
 
+  console.log(pokemonList);
+
   // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
@@ -52,6 +54,8 @@ export default function PageAccueil() {
       })
       .catch((err) => console.log(err));
   };
+
+  console.log(userPoke);
 
   // Update the Coins
   const coinsUpdate = () => {
@@ -107,11 +111,9 @@ export default function PageAccueil() {
     coinsUpdate();
     if (userPoke.coins < 1) {
       alert("Vous n'avez plus de coins");
-      window.location.reload();
       return;
     }
     randomPokemon();
-    window.location.reload();
   };
 
   // Search Button

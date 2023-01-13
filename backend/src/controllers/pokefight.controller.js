@@ -1,44 +1,16 @@
 const User = require("../models/User.model");
 const { FifoMatchmaker } = require("matchmaking");
 
-// Composition of Pokemon for combat
-const teamFighter = async (req, res) => {
-  try {
-    const username = req.user.username;
-    const PokeFight = req.body.PokeFight;
-
-    const userFight = await User.findOne(
-      { username },
-      { username: 1, PokeFight: 1 }
-    );
-
-    let array = userFight.PokeFight;
-
-    if (array.includes(PokeFight)) return;
-
-    if (array.length >= 4)
-      return res
-        .status(404)
-        .send({ error: "Impossible de mettre plus que 4 pokemons" });
-
-    userFight.PokeFight.push(PokeFight);
-
-    await userFight.save();
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Une Erreur est survenue");
-  }
-};
-
 // Set player to ready
 const ready = async (req, res) => {
   try {
     const username = req.user.username;
+    const PokeFight = req.body.PokeFight;
     const isReady = req.body.isReady;
 
     await User.findOneAndUpdate(
       { username: username },
-      { isReady: isReady },
+      { isReady: isReady, PokeFight: PokeFight },
       { new: true }
     );
   } catch (error) {
@@ -208,7 +180,6 @@ const games = async (req, res) => {
 };
 
 module.exports = {
-  teamFighter,
   ready,
   games,
 };
