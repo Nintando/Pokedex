@@ -5,7 +5,7 @@ import Signup from "../components/Sign/SignUp";
 import Signin from "../components/Sign/SignIn";
 
 import { CgPokemon } from "react-icons/cg";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
@@ -13,20 +13,17 @@ import "../styles/pokeType.css";
 import "../styles/app.css";
 
 export default function PageAccueil() {
-  const initialArray = useMemo(() => [], []);
-  const [pokemonList, setPokemonList] = useState(initialArray);
+  const [pokemonList, setPokemonList] = useState([]);
   const [userPoke, setUserPoke] = useState({});
   const [search, setSearch] = useState("");
   const [details, setDetails] = useState(null);
 
   const token = localStorage.getItem("Token");
 
-  console.log(pokemonList);
-
   // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [userPoke.coins]);
 
   const fetchUser = async () => {
     await fetch("http://localhost:5000/pokedex", {
@@ -53,15 +50,19 @@ export default function PageAccueil() {
       .catch((err) => console.log(err));
   };
 
-  console.log(userPoke);
+  const updateCoins = (newCoins) => {
+    setUserPoke({ ...userPoke, coins: newCoins });
+  };
 
   // Update the Coins
-  const coinsUpdate = () => {
+  const coinsUpdate = async () => {
     if (userPoke.coins < 1) {
       return;
     }
-    // modifie Coins
-    fetch("http://localhost:5000/pokedex/update/coins", {
+    // Update the local state
+    updateCoins(userPoke.coins - 1);
+    // Send a PATCH request to the server
+    await fetch("http://localhost:5000/pokedex/update/coins", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

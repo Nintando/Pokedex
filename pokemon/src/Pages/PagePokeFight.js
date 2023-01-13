@@ -3,7 +3,7 @@ import Signup from "../components/Sign/SignUp";
 import Signin from "../components/Sign/SignIn";
 import CardPokedex from "../components/Cards/CardPokedex";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Pokedex.css";
@@ -62,11 +62,6 @@ export default function PagePokeFight() {
     const pokeFighterData = await Promise.all(promises);
     setPokemonEquipe(pokeFighterData);
   };
-
-  console.log(userPoke);
-
-  console.log(pokemonTeams);
-  console.log(pokemonEquipe);
 
   // player Ready to fight
   const isReady = async () => {
