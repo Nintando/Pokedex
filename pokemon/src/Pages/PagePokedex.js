@@ -26,7 +26,7 @@ export default function PageAccueil() {
   // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
-  }, [pokemonList]);
+  }, []);
 
   const fetchUser = async () => {
     await fetch("http://localhost:5000/pokedex", {
@@ -39,18 +39,16 @@ export default function PageAccueil() {
       .then((res) => res.json())
       .then((data) => {
         setUserPoke(data);
-        const p = () => {
-          const pokeDex = data.pokedex;
-          pokeDex.map(async (pokemon) => {
-            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-              .then((response) => response.json())
-              .then((pokemon) => {
-                initialArray.push(pokemon);
-              });
-          });
-        };
-        setPokemonList(initialArray);
-        p();
+        const pokeDex = data.pokedex;
+        const promises = pokeDex.map(async (pokemon) => {
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+          );
+          return response.json();
+        });
+        Promise.all(promises).then((pokemonData) =>
+          setPokemonList(pokemonData)
+        );
       })
       .catch((err) => console.log(err));
   };
