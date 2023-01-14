@@ -5,6 +5,7 @@ const userSchema = new Schema({
   password: String,
   pokedex: [],
   coins: Number,
+  result: String,
   isReady: {
     type: Boolean,
     default: false,

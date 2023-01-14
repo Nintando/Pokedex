@@ -1,4 +1,5 @@
 const User = require("../models/User.model");
+const GameResult = require("../models/GameResults.model");
 const { FifoMatchmaker } = require("matchmaking");
 
 // Set player to ready
@@ -23,7 +24,14 @@ const games = async (req, res) => {
   try {
     const username = req.user.username;
 
-    const user = await User.findOne({ username: username });
+    const PokeFight = req.body.PokeFight;
+    const isReady = req.body.isReady;
+
+    const user = await User.findOneAndUpdate(
+      { username: username },
+      { isReady: isReady, PokeFight: PokeFight },
+      { new: true }
+    );
 
     const user2 = await User.aggregate([
       { $match: { isReady: true, username: { $ne: username } } },
@@ -72,6 +80,8 @@ const games = async (req, res) => {
       Promise.all(fetchPromiseArray).then(async () => {
         let i = 0,
           j = 0;
+
+        // Game Logic
         while (player1Pokemons.length > i && player2Pokemons.length > j) {
           let player1Teams = player1Pokemons[i];
           let player2Teams = player2Pokemons[j];
@@ -131,18 +141,23 @@ const games = async (req, res) => {
           }
         }
 
+        let result;
         // Give who wins
         if (player1Pokemons.length === 0) {
           console.log(`Player ${players[1].username} Wins !`);
           console.log(`Player ${players[0].username} Lose !`);
+
+          // Update Winner & Loser data
           await User.findOneAndUpdate(
             { username: players[1].username },
-            { $inc: { coins: 1 } }
+            { $inc: { coins: 1 }, result: "gagner" }
+          );
+          await User.findOneAndUpdate(
+            { username: players[0].username },
+            { result: "perdu" }
           );
 
-          res
-            .status(200)
-            .send({ winner: players[1].username, loser: players[0].username });
+          result = `${players[1].username}`;
 
           // Set both players to isReady : false
           for (const player of players) {
@@ -154,14 +169,18 @@ const games = async (req, res) => {
         } else {
           console.log(`Player ${players[0].username} Wins !`);
           console.log(`Player ${players[1].username} Lose !`);
+
+          // Update Winner & Loser data
           await User.findOneAndUpdate(
             { username: players[0].username },
-            { $inc: { coins: 1 } }
+            { $inc: { coins: 1 }, result: "gagner" }
+          );
+          await User.findOneAndUpdate(
+            { username: players[1].username },
+            { result: "perdu" }
           );
 
-          res
-            .status(200)
-            .send({ winner: players[0].username, loser: players[1].username });
+          result = `${players[0].username}`;
 
           // Set both players to isReady : false
           for (const player of players) {
@@ -171,11 +190,29 @@ const games = async (req, res) => {
             );
           }
         }
+
+        const gameResult = new GameResult({
+          players: [players[0].username, players[1].username],
+          winner: result,
+        });
+
+        await gameResult.save();
+        return result;
       });
     }
   } catch (error) {
     console.log(error);
     res.status(500).send("Une erreur est survenue");
+  }
+};
+
+const result = async (req, res) => {
+  try {
+    const username = req.user.username;
+
+    await User.findOne({ username: username });
+  } catch (error) {
+    console.log(error);
   }
 };
 

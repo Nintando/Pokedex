@@ -15,6 +15,8 @@ export default function PagePokeFight() {
   const [pokemonEquipe, setPokemonEquipe] = useState([]);
   const [pokemonTeams, setPokemonTeams] = useState([]);
   const [userPoke, setUserPoke] = useState({});
+  const [result, setResult] = useState(null);
+  const [showResults, setShowResults] = useState(false);
 
   const token = localStorage.getItem("Token");
 
@@ -34,6 +36,7 @@ export default function PagePokeFight() {
       .then((res) => res.json())
       .then((data) => {
         setUserPoke(data);
+        setResult(data.result);
         const pokeDex = data.pokedex;
         const promises = pokeDex.map(async (pokemon) => {
           const response = await fetch(
@@ -47,6 +50,9 @@ export default function PagePokeFight() {
       })
       .catch((err) => console.log(err));
   };
+
+  console.log(userPoke);
+  console.log(userPoke.result);
 
   useEffect(() => {
     fetchPokeFighter();
@@ -63,12 +69,12 @@ export default function PagePokeFight() {
     setPokemonEquipe(pokeFighterData);
   };
 
-  // player Ready to fight
-  const isReady = async () => {
+  // Get the pokemon battle
+  const pokeBattle = async () => {
     if (pokemonTeams.length === 0) {
       return alert("Select at least 1 pokemon ! ");
     } else {
-      await fetch(`http://localhost:5000/pokeFight/ready`, {
+      await fetch(`http://localhost:5000/pokeFight/games`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,23 +84,14 @@ export default function PagePokeFight() {
           isReady: true,
           PokeFight: pokemonTeams,
         }),
-      }).catch((err) => console.log(err));
+      })
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch((err) => console.log(err));
     }
   };
 
-  // Get the pokemon battle
-  const pokeBattle = async () => {
-    await fetch(`http://localhost:5000/pokeFight/games`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => console.log(res.json()))
-      .catch((err) => console.log(err));
-  };
-
+  // Add your pokemon who will fight
   const handleClickPokeFighters = (props) => {
     if (pokemonTeams.includes(props))
       return alert("pokemon existe déjà dans l'équipe");
@@ -102,46 +99,71 @@ export default function PagePokeFight() {
     setPokemonTeams((current) => [...current, props]);
   };
 
+  // Clear your pokemon team
+  const handleClean = () => {
+    setPokemonTeams([]);
+  };
+
+  // Show or Hide the result of the game
+  const handleShowResult = () => {
+    fetchUser();
+    setShowResults(!showResults);
+  };
+
+  // Start the fight
+  const handleFight = () => {
+    pokeBattle();
+    setShowResults(!showResults);
+  };
+
   if (token !== null) {
     return (
       <div className="app-container1">
         <Header />
-        
-        <div className="infoUser"> 
-        <h1>Dresseur : {userPoke.username}</h1>
-        <h1>Selectionner vos pokemon :  </h1></div>
-        <div >
-        <button className="battle-btn" onClick={pokeBattle}> Fight </button>
-        <button className="ready-btn" onClick={isReady}>Ready</button>
+        <div className="infoUser">
+          <h1>Dresseur : {userPoke.username}</h1>
+          <h1>Selectionner vos pokemon : </h1>
+          <button onClick={handleShowResult}>Voir le résultat</button>
+          {showResults && <h1>Match résultat : {userPoke.result}</h1>}
         </div>
-     
+        <div>
+          <button className="battle-btn" onClick={handleFight}>
+            {" "}
+            Fight{" "}
+          </button>
+        </div>
+        <br />
+        <div>
+          <button className="ready-btn" onClick={handleClean}>
+            {" "}
+            Clear{" "}
+          </button>
+        </div>
 
         <div className="FightCard">
           {pokemonEquipe.map((pokemon, i) => {
             return <CardPokedex key={i} pokemon={pokemon} />;
           })}
         </div>
-            
-  
         <div className="Pokedex">
-            {pokemonList.map((pokemon) => {
-              return (
-                
-                <div key={pokemon.id}>
-                  <button className="btn-hide"
-                    onClick={() => {
-                      handleClickPokeFighters(pokemon.name);
-                    }}
-                  ><div >
+          {pokemonList.map((pokemon) => {
+            return (
+              <div key={pokemon.id}>
+                <button
+                  className="btn-hide"
+                  onClick={() => {
+                    handleClickPokeFighters(pokemon.name);
+                  }}
+                >
+                  <div>
                     <CardPokedex key={pokemon.id} pokemon={pokemon} />
-                    </div>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                  </div>
+                </button>
+              </div>
+            );
+          })}
         </div>
-  
+      </div>
     );
   } else {
     return (

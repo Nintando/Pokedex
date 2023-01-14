@@ -19,10 +19,10 @@ pokemonRoutes
   .route("/pokedex/update/pokedex")
   .patch(Auth.Auth, Update.updateArrayPokemon);
 
-// Route l'utilisateur se met en prêt
-pokemonRoutes.route("/pokeFight/ready").post(Auth.Auth, PokeFight.ready);
+// // Route l'utilisateur se met en prêt
+// pokemonRoutes.route("/pokeFight/ready").post(Auth.Auth, PokeFight.ready);
 
 // Route Recherche Joueurs qui sont prêt puis lance le match
-pokemonRoutes.route("/pokeFight/games").get(Auth.Auth, PokeFight.games);
+pokemonRoutes.route("/pokeFight/games").post(Auth.Auth, PokeFight.games);
 
 module.exports = pokemonRoutes;
