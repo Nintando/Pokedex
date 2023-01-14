@@ -106,13 +106,14 @@ export default function PagePokeFight() {
     return (
       <div className="app-container1">
         <Header />
+        
+        <div className="infoUser"> 
+        <h1>Dresseur : {userPoke.username}</h1>
+        <h1>Selectionner vos pokemon :  </h1></div>
         <div >
         <button className="battle-btn" onClick={pokeBattle}> Fight </button>
         <button className="ready-btn" onClick={isReady}>Ready</button>
         </div>
-        <div className="infoUser"> 
-        <h1>Dresseur : {userPoke.username}</h1>
-        <h1>Selectionner vos pokemon :  </h1></div>
      
 
         <div className="FightCard">
@@ -121,39 +122,43 @@ export default function PagePokeFight() {
           })}
         </div>
             
+  
         <div className="Pokedex">
-          <div className="d-flex justify-content-center">
             {pokemonList.map((pokemon) => {
               return (
+                
                 <div key={pokemon.id}>
                   <button className="btn-hide"
                     onClick={() => {
                       handleClickPokeFighters(pokemon.name);
                     }}
-                  >
+                  ><div >
                     <CardPokedex key={pokemon.id} pokemon={pokemon} />
+                    </div>
                   </button>
                 </div>
               );
             })}
           </div>
         </div>
-      </div>
+  
     );
   } else {
     return (
       <div className="register_login">
         <Header />
-        <h1>Register</h1>
+        <div className="RegisterCard">
+          <h1>Register</h1>
 
-        <Signup id="register" />
+          <Signup id="register" />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <h1>Login</h1>
+          <h1>Login</h1>
 
-        <Signin id="login" />
+          <Signin id="login" />
+        </div>
       </div>
     );
   }

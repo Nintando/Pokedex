@@ -44,7 +44,7 @@ body,
 #root > div {
   height: 100%;
   color: rgb(255, 255, 255);
- background-color: rgba(9, 87, 94, 0.873);
+background-color: #c6d19f;
 }
 
 .nav-link {
@@ -57,15 +57,28 @@ text-align: center;
 color: #040404;
 background-color: #f1f1f10c;
 }
+.PagePokedex{
+  text-align: center;
+}
+.PokedexCard2{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 130px; 
 
+}
 .Pokedex {
   text-align: center;
-  position: fixed;
-  width: 600px;
-  height: 200px;
-  left: 50%;
-  top: 20%;
-  margin-left: -300px; /*half the width*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 130px; 
+  background-image: url(../img/e2.png);
+  background-size: 180%;
+
 }
 .PokedexCard{
   width: 13rem;
@@ -75,23 +88,21 @@ background-color: #f1f1f10c;
 .FightCard{
   text-align: center;
   display: flex;
-  position: fixed;
   height: 200px;
-  left: 44%;
-  top: 60%;
-  margin-left: -300px; /*half the width*/
+  left: 45%;
+  top: 17.5%;
+  margin-left: 570px; 
   
 }
+
 .btn-hide{
   background-color: transparent;
   border: transparent;
 }
 .battle-btn {
-  position: fixed;
-  right: 60px; 
-  top: 55%; 
-  appearance: none;
-  background-color: #f6400ee7;
+  margin-right: 1650px;
+  background-color: #0ef65faf;
+
   border-radius: 33px;
   border-style: none;
   box-sizing: border-box;
@@ -99,11 +110,8 @@ background-color: #f1f1f10c;
   font-size: 45px;
 }
 .ready-btn{
-  position: fixed;
-  left: 60px; 
-  top: 55%; 
-  appearance: none;
-  background-color: #0ef65faf;
+  background-color: #f6400ee7;
+ 
   border-radius: 33px;
   border-style: none;
   box-sizing: border-box;
@@ -193,7 +201,7 @@ background-color: #f1f1f10c;
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #17279f;
+  background-color: #9ea56e;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -217,11 +225,14 @@ background-color: #f1f1f10c;
   justify-content: center;
   text-align: center;
 }
-.bck{
-  background-image: url('../img/s.jpg');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
+.HeaderPokemon{
+
+
+  background-color: #eed7c596;
+}
+.PokeBody{
+
+background-color: #EED7C5;
 }
 ::-webkit-scrollbar {
   width: 10px;

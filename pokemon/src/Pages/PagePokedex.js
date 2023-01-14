@@ -141,7 +141,7 @@ export default function PageAccueil() {
         <button onClick={handleClick}>
           <CgPokemon />
         </button>
-        <div className="Pokedex">
+        <div className="PagePokedex">
           <div>
             <button id="gen-button" onClick={handleOnClick}>
               Générer un pokémon aléatoire (1 pièces)
@@ -151,7 +151,7 @@ export default function PageAccueil() {
             <p className="coin">
               {userPoke.username} vous avez {userPoke.coins} pièces{" "}
             </p>
-            <div className="d-flex justify-content-center">
+            <div className="PokedexCard2">
               {pokemonList.map((pokemon, i) => {
                 return <CardPokedex key={i} pokemon={pokemon} />;
               })}

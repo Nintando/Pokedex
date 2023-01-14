@@ -65,7 +65,7 @@ export default function App() {
   return (
     <div className="bck">
       <div className="HeaderPokemon"><Header /></div>
-  
+  <div className="PokeBody">
       {pokemonData.map((pokemon, i) => {
         return <Card key={i} pokemon={pokemon} />;
       })}
@@ -81,6 +81,7 @@ export default function App() {
           </button>
         )}
       </div>
+    </div>
     </div>
   );
 }
