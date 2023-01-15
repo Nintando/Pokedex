@@ -6,9 +6,10 @@ function Signin() {
 
   const handleSubmit = async () => {
     console.log(username, password);
-
+// Envoie les données de username et de password au serveur
     fetch("http://localhost:5000/user/login", {
       method: "POST",
+       // Envoie les données en format json
       body: JSON.stringify({
         username: username,
         password: password,
@@ -36,7 +37,6 @@ function Signin() {
   };
 
   return (
-    // modifier avec du css car le boostrap nique tout
 
     <div>
       Username

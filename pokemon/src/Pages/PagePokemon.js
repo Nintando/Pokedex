@@ -5,15 +5,21 @@ import Header from "../Header";
 import { useState, useEffect } from "react";
 
 export default function App() {
+  // State pour stocker les données de la réponse de l'API
+  
   const [pokemon, setPokemon] = useState([]);
+  // State pour stocker les données détaillées des pokemons
+
   const [pokemonData, setPokemonData] = useState([]);
 
+// State pour stocker les URLs pour naviguer entre les pages
   const [url, setUrl] = useState({
     current: "https://pokeapi.co/api/v2/pokemon/",
     next: null,
     previous: null,
   });
 
+  // Fonction pour naviguer vers la page suivante
   const next = () => {
     const nextUrl = {
       current: url.next,
@@ -23,6 +29,7 @@ export default function App() {
     setUrl(nextUrl);
   };
 
+  // Fonction pour naviguer vers la page précédente
   const previous = () => {
     const previousUrl = {
       current: url.previous,
@@ -32,6 +39,7 @@ export default function App() {
     setUrl(previousUrl);
   };
 
+  // Fonction pour charger les données détaillées des pokemons
   const loadingPokemon = async () => {
     let _pokemon = await Promise.all(
       pokemon.map(async (pokemon) => {
@@ -42,6 +50,7 @@ export default function App() {
     setPokemonData(_pokemon);
   };
 
+// UseEffect pour charger les données de la réponse de l'API
   useEffect(() => {
     fetch(url.current)
       .then((res) => res.json())

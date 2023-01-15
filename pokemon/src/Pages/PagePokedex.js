@@ -8,7 +8,6 @@ import { CgPokemon } from "react-icons/cg";
 import { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
 import "../styles/app.css";
 
@@ -162,6 +161,7 @@ export default function PageAccueil() {
           (details.error ? (
             <h1>{details.error}</h1>
           ) : (
+            <div className="CardContainer">
             <div className="Card2">
               <h2>#{details.id}</h2>
               <h1>{details.name}</h1>
@@ -173,6 +173,7 @@ export default function PageAccueil() {
                   </span>
                 );
               })}
+            </div>
             </div>
           ))}
         <br />

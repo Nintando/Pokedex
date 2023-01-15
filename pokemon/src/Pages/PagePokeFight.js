@@ -6,7 +6,6 @@ import CardPokedex from "../components/Cards/CardPokedex";
 import { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Pokedex.css";
 import "../styles/pokeType.css";
 import "../styles/app.css";
 
@@ -123,21 +122,22 @@ export default function PagePokeFight() {
         <div className="infoUser">
           <h1>Dresseur : {userPoke.username}</h1>
           <h1>Selectionner vos pokemon : </h1>
-          <button onClick={handleShowResult}>Voir le résultat</button>
-          {showResults && <h1>Match résultat : {userPoke.result}</h1>}
+          <button id="Results-btn" onClick={handleShowResult}>Voir le résultat</button>
+          {showResults && <h1>Résultat du match: {userPoke.result}</h1>}
         </div>
         <div>
+          <div className="btn-pokefight">
           <button className="battle-btn" onClick={handleFight}>
             {" "}
-            Fight{" "}
+            Combat{" "}
           </button>
         </div>
-        <br />
         <div>
-          <button className="ready-btn" onClick={handleClean}>
+          <button className="clear-btn" onClick={handleClean}>
             {" "}
-            Clear{" "}
+            Supprimer{" "}
           </button>
+        </div>
         </div>
 
         <div className="FightCard">
