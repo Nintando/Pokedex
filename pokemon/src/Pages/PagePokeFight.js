@@ -14,7 +14,6 @@ export default function PagePokeFight() {
   const [pokemonEquipe, setPokemonEquipe] = useState([]);
   const [pokemonTeams, setPokemonTeams] = useState([]);
   const [userPoke, setUserPoke] = useState({});
-  const [result, setResult] = useState(null);
   const [showResults, setShowResults] = useState(false);
 
   const token = localStorage.getItem("Token");
@@ -22,6 +21,7 @@ export default function PagePokeFight() {
   // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
+    // eslint-disable-next-line
   }, []);
 
   const fetchUser = async () => {
@@ -35,7 +35,6 @@ export default function PagePokeFight() {
       .then((res) => res.json())
       .then((data) => {
         setUserPoke(data);
-        setResult(data.result);
         const pokeDex = data.pokedex;
         const promises = pokeDex.map(async (pokemon) => {
           const response = await fetch(
@@ -50,11 +49,9 @@ export default function PagePokeFight() {
       .catch((err) => console.log(err));
   };
 
-  console.log(userPoke);
-  console.log(userPoke.result);
-
   useEffect(() => {
     fetchPokeFighter();
+    // eslint-disable-next-line
   }, [pokemonTeams]);
 
   const fetchPokeFighter = async () => {

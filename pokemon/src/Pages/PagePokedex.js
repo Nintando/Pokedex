@@ -22,6 +22,7 @@ export default function PageAccueil() {
   // Get User Data & Show Pokemon of said User Data
   useEffect(() => {
     fetchUser();
+    // eslint-disable-next-line
   }, [userPoke.coins]);
 
   const fetchUser = async () => {
@@ -162,18 +163,18 @@ export default function PageAccueil() {
             <h1>{details.error}</h1>
           ) : (
             <div className="CardContainer">
-            <div className="Card2">
-              <h2>#{details.id}</h2>
-              <h1>{details.name}</h1>
-              <img src={details.sprites.front_default} alt="" />
-              {details.types.map((type, i) => {
-                return (
-                  <span key={i} className={`type ${type.type.name}`}>
-                    {type.type.name}
-                  </span>
-                );
-              })}
-            </div>
+              <div className="Card2">
+                <h2>#{details.id}</h2>
+                <h1>{details.name}</h1>
+                <img src={details.sprites.front_default} alt="" />
+                {details.types.map((type, i) => {
+                  return (
+                    <span key={i} className={`type ${type.type.name}`}>
+                      {type.type.name}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           ))}
         <br />

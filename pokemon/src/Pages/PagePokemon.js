@@ -5,21 +5,20 @@ import Header from "../Header";
 import { useState, useEffect } from "react";
 
 export default function App() {
-  // State pour stocker les données de la réponse de l'API
-  
+  // State for stocking data of the API
   const [pokemon, setPokemon] = useState([]);
-  // State pour stocker les données détaillées des pokemons
 
+  // State for stocking info of Pokemons
   const [pokemonData, setPokemonData] = useState([]);
 
-// State pour stocker les URLs pour naviguer entre les pages
+  // State for stocking URLs to help navigate between pages
   const [url, setUrl] = useState({
     current: "https://pokeapi.co/api/v2/pokemon/",
     next: null,
     previous: null,
   });
 
-  // Fonction pour naviguer vers la page suivante
+  // Function to navigate to the next page
   const next = () => {
     const nextUrl = {
       current: url.next,
@@ -29,7 +28,7 @@ export default function App() {
     setUrl(nextUrl);
   };
 
-  // Fonction pour naviguer vers la page précédente
+  // Function to navigate to the previous page
   const previous = () => {
     const previousUrl = {
       current: url.previous,
@@ -39,7 +38,7 @@ export default function App() {
     setUrl(previousUrl);
   };
 
-  // Fonction pour charger les données détaillées des pokemons
+  // Function to load Pokemon data
   const loadingPokemon = async () => {
     let _pokemon = await Promise.all(
       pokemon.map(async (pokemon) => {
@@ -50,7 +49,7 @@ export default function App() {
     setPokemonData(_pokemon);
   };
 
-// UseEffect pour charger les données de la réponse de l'API
+  // UseEffect help to load the API each time the url.current change
   useEffect(() => {
     fetch(url.current)
       .then((res) => res.json())
@@ -73,24 +72,26 @@ export default function App() {
 
   return (
     <div className="bck">
-      <div className="HeaderPokemon"><Header /></div>
-  <div className="PokeBody">
-      {pokemonData.map((pokemon, i) => {
-        return <Card key={i} pokemon={pokemon} />;
-      })}
-      <div className="action_btn">
-        {url.previous && (
-          <button className="btn-load" onClick={previous}>
-            Previous
-          </button>
-        )}
-        {url.next && (
-          <button className="btn-load" onClick={next}>
-            Next
-          </button>
-        )}
+      <div className="HeaderPokemon">
+        <Header />
       </div>
-    </div>
+      <div className="PokeBody">
+        {pokemonData.map((pokemon, i) => {
+          return <Card key={i} pokemon={pokemon} />;
+        })}
+        <div className="action_btn">
+          {url.previous && (
+            <button className="btn-load" onClick={previous}>
+              Previous
+            </button>
+          )}
+          {url.next && (
+            <button className="btn-load" onClick={next}>
+              Next
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
