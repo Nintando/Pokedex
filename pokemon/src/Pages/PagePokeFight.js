@@ -112,7 +112,7 @@ export default function PagePokeFight() {
   // Start the fight
   const handleFight = () => {
     pokeBattle();
-    setShowResults(!showResults);
+    setShowResults(false);
   };
 
   if (token !== null) {
@@ -122,22 +122,24 @@ export default function PagePokeFight() {
         <div className="infoUser">
           <h1>Dresseur : {userPoke.username}</h1>
           <h1>Selectionner vos pokemon : </h1>
-          <button id="Results-btn" onClick={handleShowResult}>Voir le résultat</button>
+          <button id="Results-btn" onClick={handleShowResult}>
+            Voir le résultat
+          </button>
           {showResults && <h1>Résultat du match: {userPoke.result}</h1>}
         </div>
         <div>
           <div className="btn-pokefight">
-          <button className="battle-btn" onClick={handleFight}>
-            {" "}
-            Combat{" "}
-          </button>
-        </div>
-        <div>
-          <button className="clear-btn" onClick={handleClean}>
-            {" "}
-            Supprimer{" "}
-          </button>
-        </div>
+            <button className="battle-btn" onClick={handleFight}>
+              {" "}
+              Combat{" "}
+            </button>
+          </div>
+          <div>
+            <button className="clear-btn" onClick={handleClean}>
+              {" "}
+              Supprimer{" "}
+            </button>
+          </div>
         </div>
 
         <div className="FightCard">

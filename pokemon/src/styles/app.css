@@ -18,7 +18,7 @@ body,
 #root > div {
   height: 100%;
   color: rgb(255, 255, 255);
-background-color: #c6d19f;
+  background-color: #c6d19f;
 }
 
 /*----------------------------------------------------CARD SECTION-------------------------------------------------------------------------------------------------*/
@@ -41,10 +41,10 @@ background-color: #c6d19f;
   font-weight: bold;
 }
 
-.PagePokedex{
+.PagePokedex {
   text-align: center;
 }
-.PokedexCard2{
+.PokedexCard2 {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -52,24 +52,21 @@ background-color: #c6d19f;
   align-items: flex-start;
   top: 600px;
   left: 450px;
-  
-
 }
-.PokedexCard{
+.PokedexCard {
   width: 13rem;
   background-color: rgba(237, 233, 233, 0.477);
   height: 320px;
 }
-.FightCard{
+.FightCard {
   text-align: center;
   display: flex;
   height: 200px;
   left: 45%;
   top: 17.5%;
-  margin-left: 570px; 
-  
+  margin-left: 325px;
 }
-.Card2{
+.Card2 {
   width: 12rem;
   display: flex;
   flex-direction: column;
@@ -81,8 +78,8 @@ background-color: #c6d19f;
 }
 .CardContainer {
   position: absolute;
-  top: 280px; 
-  left: 10px; 
+  top: 280px;
+  left: 10px;
 }
 /*----------------------------------------------------CONTAINER SECTION-------------------------------------------------------------------------------------------------*/
 .app-container {
@@ -91,12 +88,11 @@ background-color: #c6d19f;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.app-container1{
+.app-container1 {
   background-image: url("../img/e.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 .nav-link {
@@ -105,11 +101,10 @@ background-color: #c6d19f;
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-
-.infoUser{
-text-align: center;
-color: #040404;
-background-color: #f1f1f10c;
+.infoUser {
+  text-align: center;
+  color: #040404;
+  background-color: #f1f1f10c;
 }
 /*----------------------------------------------------PAGE-SECTION-------------------------------------------------------------------------------------------------*/
 .Pokedex {
@@ -118,10 +113,9 @@ background-color: #f1f1f10c;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 130px; 
+  margin-top: 130px;
   background-image: url(../img/e2.png);
   background-size: 180%;
-
 }
 .SearchBar {
   align-items: center;
@@ -135,15 +129,12 @@ background-color: #f1f1f10c;
 .coin {
   font-size: x-large;
 }
-.HeaderPokemon{
-
-
+.HeaderPokemon {
   background-color: #ac908c;
 }
-.PokeBody{
-
-background-color: #ac908c;
-}/*----------------------------------------------------LINK-SECTION-------------------------------------------------------------------------------------------------*/
+.PokeBody {
+  background-color: #ac908c;
+} /*----------------------------------------------------LINK-SECTION-------------------------------------------------------------------------------------------------*/
 .link {
   display: flex;
   justify-content: center;
@@ -162,7 +153,6 @@ background-color: #ac908c;
 }
 .link-2 {
   margin: 0 20px;
-  
 }
 .link-3 {
   margin: 0 20px;
@@ -184,20 +174,18 @@ background-color: #ac908c;
   justify-content: center;
   text-align: center;
 }
-.RegisterCard{
+.RegisterCard {
   padding-top: 10%;
   text-align: center;
   color: #040404;
-  
-  }
-  .register_login{
-    align-items: center;
-    background-image: url(../img/733114.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-  }
+}
+.register_login {
+  align-items: center;
+  background-image: url(../img/733114.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 /*----------------------------------------------------SCROLLBAR-SECTION-------------------------------------------------------------------------------------------------*/
 
 ::-webkit-scrollbar {
@@ -246,30 +234,29 @@ background-color: #ac908c;
   border-radius: 33px;
   box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.6);
 }
-.btn-hide{
+.btn-hide {
   background-color: transparent;
   border: transparent;
 }
 .battle-btn {
-position: absolute;
+  position: absolute;
   background-color: #0ef65faf;
   border-radius: 33px;
   border-style: none;
   box-sizing: border-box;
   color: #fff;
   font-size: 35px;
+  margin-left: 50px;
 }
 
-.clear-btn{
- margin-left: 85%;
+.clear-btn {
+  margin-left: 85%;
   background-color: #f6400ee7;
   border-radius: 33px;
   border-style: none;
   box-sizing: border-box;
   color: #fff;
   font-size: 35px;
-  
-
 }
 .btn-del {
   border-radius: 24px;

@@ -2,16 +2,15 @@ const User = require("../models/User.model");
 const GameResult = require("../models/GameResults.model");
 const { FifoMatchmaker } = require("matchmaking");
 
-// Set player to ready
-const ready = async (req, res) => {
+// Set player to ready: false
+const readyFalse = async (req, res) => {
   try {
     const username = req.user.username;
-    const PokeFight = req.body.PokeFight;
     const isReady = req.body.isReady;
 
     await User.findOneAndUpdate(
       { username: username },
-      { isReady: isReady, PokeFight: PokeFight },
+      { isReady: isReady },
       { new: true }
     );
   } catch (error) {
@@ -206,17 +205,7 @@ const games = async (req, res) => {
   }
 };
 
-const result = async (req, res) => {
-  try {
-    const username = req.user.username;
-
-    await User.findOne({ username: username });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 module.exports = {
-  ready,
+  readyFalse,
   games,
 };
