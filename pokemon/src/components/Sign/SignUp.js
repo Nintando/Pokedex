@@ -40,7 +40,6 @@ function Signup() {
   };
 
   return (
-    // modifier avec du css car le boostrap nique tout
 
     <div>
       Username
